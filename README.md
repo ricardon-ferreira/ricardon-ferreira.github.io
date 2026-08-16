@@ -10,6 +10,7 @@ Endereço final: **https://ricardon-ferreira.github.io**
 ```
 index.html
 artigos/
+  260-2018-experiencia-do-usuario-en.pdf
   339-2019-redes-para-containers-en.pdf
   370-2020-o-que-e-python-en.pdf
   387-2021-cloud-distribuida-en.pdf
