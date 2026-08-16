@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ricardo Nunes Ferreira</title>
+<meta name="description" content="Ricardo Nunes Ferreira — arquitetura e integração de SIEM, 25 anos em infraestrutura de TI.">
+<meta property="og:title" content="Ricardo Nunes Ferreira">
+<meta property="og:description" content="Arquitetura e integração de SIEM. 25 anos em infraestrutura de TI.">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2315171F'/%3E%3Crect x='6' y='14' width='20' height='5' fill='%23E9E63F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E6E7E2;
+    --paper-2:#DEDFD9;
+    --ink:#15171F;
+    --muted:#5C6069;
+    --rule:#C4C6C1;
+    --mark:#E9E63F;
+    --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --body:"Newsreader",Georgia,"Times New Roman",serif;
+    --data:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --pad:clamp(1.25rem,5vw,5rem);
+    --maxw:74rem;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:clamp(1rem,.95rem + .3vw,1.15rem);
+    line-height:1.6;
+    font-optical-sizing:auto;
+  }
+  a{color:inherit}
+  ::selection{background:var(--mark);color:var(--ink)}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+  /* ---------- utility bar ---------- */
+  .bar{
+    border-bottom:1px solid var(--rule);
+    font-family:var(--data);
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .bar__in{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:.85rem}
+  .lang{display:flex;gap:.15rem}
+  .lang button{
+    font:inherit;letter-spacing:inherit;text-transform:inherit;
+    background:none;border:1px solid transparent;color:var(--muted);
+    padding:.2rem .5rem;cursor:pointer;border-radius:0;
+    transition:color .15s ease,background-color .15s ease,border-color .15s ease;
+  }
+  .lang button:hover{color:var(--ink)}
+  .lang button[aria-pressed="true"]{background:var(--mark);color:var(--ink);border-color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{padding-block:clamp(3.5rem,10vw,7.5rem) clamp(3rem,8vw,6rem)}
+  .eyebrow{
+    font-family:var(--data);
+    font-size:.72rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 clamp(1.5rem,4vw,2.5rem);
+  }
+  h1{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 118;
+    font-weight:800;
+    font-size:clamp(2.9rem,11.5vw,8.5rem);
+    line-height:.86;
+    letter-spacing:-.025em;
+    text-transform:uppercase;
+    margin:0;
+  }
+  h1 span{display:block}
+  h1 span+span{padding-left:.06em}
+  .lede{
+    max-width:34ch;
+    font-size:clamp(1.15rem,1rem + .8vw,1.6rem);
+    line-height:1.45;
+    font-weight:300;
+    margin:clamp(1.75rem,4vw,2.75rem) 0 0;
+    border-top:1px solid var(--rule);
+    padding-top:clamp(1.25rem,3vw,2rem);
+  }
+  .links{
+    display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;
+    margin-top:clamp(1.75rem,4vw,2.5rem);
+    font-family:var(--data);font-size:.82rem;letter-spacing:.04em;
+  }
+  .links a{
+    text-decoration:none;
+    padding-bottom:.15rem;
+    border-bottom:1px solid var(--rule);
+    transition:border-color .18s ease,background-color .18s ease;
+  }
+  .links a:hover{border-bottom-color:var(--ink);background:var(--mark)}
+
+  /* ---------- sections ---------- */
+  .sec{padding-block:clamp(3rem,7vw,5.5rem);border-top:1px solid var(--rule)}
+  .sec__head{
+    display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+    font-family:var(--data);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+    margin-bottom:clamp(1.75rem,4vw,2.75rem);
+  }
+  .sec__head span:last-child{color:var(--muted)}
+
+  /* ---------- event stream ---------- */
+  .ev{
+    display:grid;
+    grid-template-columns:6.5rem 9rem 1fr;
+    gap:0 1.5rem;
+    align-items:baseline;
+    padding-block:.85rem;
+    border-bottom:1px solid var(--rule);
+    font-family:var(--data);
+    font-size:.86rem;
+  }
+  .ev:first-of-type{border-top:1px solid var(--rule)}
+  .ev__time{color:var(--muted);font-variant-numeric:tabular-nums}
+  .ev__tag{color:var(--muted);letter-spacing:.1em;font-size:.7rem;text-transform:uppercase}
+  .ev__msg{font-family:var(--body);font-size:1.02rem;line-height:1.45}
+  .ev__msg b{font-weight:600}
+  .ev__msg em{font-style:normal;color:var(--muted)}
+
+  .ev--live .ev__tag{color:var(--ink);font-weight:600}
+  .ev--live .ev__msg mark{
+    background:linear-gradient(var(--mark),var(--mark)) no-repeat left center;
+    background-size:0% 100%;
+    color:inherit;
+    padding:.12em .32em;
+    margin-inline:-.32em;
+    -webkit-box-decoration-break:clone;
+    box-decoration-break:clone;
+    animation:swipe .55s .35s cubic-bezier(.22,.7,.28,1) forwards;
+  }
+  .ev--live .ev__msg::after{
+    content:"▍";
+    margin-left:.3em;
+    color:var(--ink);
+    animation:blink 1.15s steps(1) infinite;
+  }
+  @keyframes swipe{to{background-size:100% 100%}}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+
+  /* ---------- practice blocks ---------- */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,3rem)}
+  .blk h3{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 108;
+    font-weight:700;font-size:1.15rem;text-transform:uppercase;letter-spacing:.01em;
+    margin:0 0 .65rem;padding-bottom:.65rem;border-bottom:1px solid var(--rule);
+  }
+  .blk p{margin:0;color:var(--muted);font-size:1rem}
+
+  /* ---------- publications ---------- */
+  .pub{
+    display:grid;grid-template-columns:5rem 1fr 7rem;gap:0 1.5rem;align-items:baseline;
+    padding-block:.9rem;border-bottom:1px solid var(--rule);
+  }
+  .pub:first-of-type{border-top:1px solid var(--rule)}
+  .pub__n,.pub__d{font-family:var(--data);font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .pub__d{text-align:right}
+  .pub__t{font-size:1.05rem;line-height:1.4}
+  .pub__t a{
+    text-decoration:none;
+    border-bottom:1px solid var(--rule);
+    transition:border-color .18s ease,background-color .18s ease;
+  }
+  .pub__t a:hover{border-bottom-color:var(--ink);background:var(--mark)}
+  .pub__f{
+    font-family:var(--data);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);margin-left:.6rem;white-space:nowrap;
+  }
+  .note{margin:1.5rem 0 0;font-size:.95rem;color:var(--muted);max-width:52ch}
+
+  /* ---------- footer ---------- */
+  .foot{border-top:1px solid var(--rule);background:var(--paper-2)}
+  .foot__in{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    padding-block:clamp(2rem,5vw,3rem);
+    font-family:var(--data);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  }
+  .foot__in a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .foot__in a:hover{background:var(--mark)}
+
+  /* ---------- reveal ---------- */
+  .rise{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+  .rise.in{opacity:1;transform:none}
+
+  @media (max-width:860px){
+    .grid3{grid-template-columns:1fr}
+    .ev{grid-template-columns:5.5rem 1fr;gap:0 1rem}
+    .ev__tag{grid-column:1;grid-row:2;font-size:.62rem}
+    .ev__msg{grid-column:2;grid-row:1/3}
+    .pub{grid-template-columns:3.5rem 1fr;gap:0 1rem}
+    .pub__d{grid-column:2;text-align:left;margin-top:.2rem}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+    .ev--live .ev__msg mark{background-size:100% 100%}
+    .ev--live .ev__msg::after{display:none}
+    .rise{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar__in">
+    <div>Since 1994</div>
+    <div class="lang">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <p class="eyebrow" data-pt="Entusiasta de tecnologia" data-en="Technology enthusiast">Entusiasta de tecnologia</p>
+    <h1><span>Ricardo</span><span>Nunes</span><span>Ferreira</span></h1>
+    <p class="lede" data-pt="Desenho e integro as ferramentas que enxergam o que acontece dentro da infraestrutura — antes que alguém precise perguntar." data-en="I design and integrate the tools that see what happens inside the infrastructure — before anyone has to ask.">Desenho e integro as ferramentas que enxergam o que acontece dentro da infraestrutura — antes que alguém precise perguntar.</p>
+    <nav class="links">
+      <a href="mailto:SEU-EMAIL@EXEMPLO.COM" data-pt="E-mail" data-en="Email">E-mail</a>
+      <a href="https://www.linkedin.com/in/SEU-USUARIO">LinkedIn</a>
+      <a href="https://github.com/ricardon">GitHub</a>
+    </nav>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec__head">
+      <span data-pt="Eventos" data-en="Events">Eventos</span>
+      <span data-pt="1997 → hoje" data-en="1997 → today">1997 → hoje</span>
+    </div>
+
+    <div class="ev rise">
+      <div class="ev__time">1997</div>
+      <div class="ev__tag" data-pt="Formação" data-en="Education">Formação</div>
+      <div class="ev__msg" data-pt="Tecnólogo em <b>Processamento de Dados</b>, <em>Fatec-SP</em>" data-en="Technologist degree in <b>Data Processing</b>, <em>Fatec-SP</em>">Tecnólogo em <b>Processamento de Dados</b>, <em>Fatec-SP</em></div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2001</div>
+      <div class="ev__tag" data-pt="Formação" data-en="Education">Formação</div>
+      <div class="ev__msg" data-pt="Bacharelado em <b>Ciência da Computação</b>, <em>Universidade Cruzeiro do Sul</em>" data-en="Bachelor's degree in <b>Computer Science</b>, <em>Universidade Cruzeiro do Sul</em>">Bacharelado em <b>Ciência da Computação</b>, <em>Universidade Cruzeiro do Sul</em></div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2001</div>
+      <div class="ev__tag" data-pt="Carreira" data-en="Career">Carreira</div>
+      <div class="ev__msg" data-pt="Entrada na <b>IBM</b> — início de vinte anos em infraestrutura e arquitetura" data-en="Joined <b>IBM</b> — the start of twenty years in infrastructure and architecture">Entrada na <b>IBM</b> — início de vinte anos em infraestrutura e arquitetura</div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2005</div>
+      <div class="ev__tag" data-pt="Formação" data-en="Education">Formação</div>
+      <div class="ev__msg" data-pt="Pós-graduação em <b>Gestão e Estratégia</b>, <em>FIAP</em>" data-en="Graduate degree in <b>Management and Strategy</b>, <em>FIAP</em>">Pós-graduação em <b>Gestão e Estratégia</b>, <em>FIAP</em></div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2018—21</div>
+      <div class="ev__tag" data-pt="Publicação" data-en="Publication">Publicação</div>
+      <div class="ev__msg" data-pt="Cinco <b>Mini Papers</b> na série do <em>Technology Leadership Council Brazil</em>" data-en="Five <b>Mini Papers</b> in the <em>Technology Leadership Council Brazil</em> series">Cinco <b>Mini Papers</b> na série do <em>Technology Leadership Council Brazil</em></div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2021</div>
+      <div class="ev__tag" data-pt="Carreira" data-en="Career">Carreira</div>
+      <div class="ev__msg" data-pt="<b>Technical Solutions Manager</b> na <em>Kyndryl</em>" data-en="<b>Technical Solutions Manager</b> at <em>Kyndryl</em>"><b>Technical Solutions Manager</b> na <em>Kyndryl</em></div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2023</div>
+      <div class="ev__tag" data-pt="Formação" data-en="Education">Formação</div>
+      <div class="ev__msg" data-pt="Bacharelado em <b>Engenharia Civil</b>, <em>Centro Universitário ENIAC</em>" data-en="Bachelor's degree in <b>Civil Engineering</b>, <em>Centro Universitário ENIAC</em>">Bacharelado em <b>Engenharia Civil</b>, <em>Centro Universitário ENIAC</em></div>
+    </div>
+    <div class="ev rise">
+      <div class="ev__time">2024</div>
+      <div class="ev__tag" data-pt="Carreira" data-en="Career">Carreira</div>
+      <div class="ev__msg" data-pt="<b>Global DNSO Leader</b>, <em>Kyndryl</em>" data-en="<b>Global DNSO Leader</b>, <em>Kyndryl</em>"><b>Global DNSO Leader</b>, <em>Kyndryl</em></div>
+    </div>
+    <div class="ev ev--live rise">
+      <div class="ev__time">2025—</div>
+      <div class="ev__tag" data-pt="Ativo" data-en="Active">Ativo</div>
+      <div class="ev__msg" data-pt="<mark><b>Global Cybersecurity Tools Leader</b>, Kyndryl</mark>" data-en="<mark><b>Global Cybersecurity Tools Leader</b>, Kyndryl</mark>"><mark><b>Global Cybersecurity Tools Leader</b>, Kyndryl</mark></div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec__head">
+      <span data-pt="Atuação" data-en="Practice">Atuação</span>
+      <span>03</span>
+    </div>
+    <div class="grid3">
+      <div class="blk rise">
+        <h3 data-pt="Arquitetura de SIEM" data-en="SIEM architecture">Arquitetura de SIEM</h3>
+        <p data-pt="Desenho de plataformas de detecção: coleta, normalização, correlação e retenção de eventos em ambientes multicloud e híbridos." data-en="Detection platform design: event collection, normalization, correlation and retention across hybrid and multicloud environments.">Desenho de plataformas de detecção: coleta, normalização, correlação e retenção de eventos em ambientes multicloud e híbridos.</p>
+      </div>
+      <div class="blk rise">
+        <h3 data-pt="Integração" data-en="Integration">Integração</h3>
+        <p data-pt="Conexão das ferramentas de segurança ao que já existe — inventário, ITSM, automação — para que o alerta chegue onde alguém pode agir." data-en="Wiring security tooling into what is already there — inventory, ITSM, automation — so the alert lands where someone can act on it.">Conexão das ferramentas de segurança ao que já existe — inventário, ITSM, automação — para que o alerta chegue onde alguém pode agir.</p>
+      </div>
+      <div class="blk rise">
+        <h3 data-pt="Pré-venda técnica" data-en="Technical pre-sales">Pré-venda técnica</h3>
+        <p data-pt="Tradução de requisito de cliente em solução dimensionada, com escopo, esforço e riscos declarados antes da assinatura." data-en="Turning client requirements into a sized solution, with scope, effort and risks stated before anyone signs.">Tradução de requisito de cliente em solução dimensionada, com escopo, esforço e riscos declarados antes da assinatura.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec">
+    <div class="sec__head">
+      <span data-pt="Publicações" data-en="Publications">Publicações</span>
+      <span>TLC-BR Mini Paper Series</span>
+    </div>
+
+    <div class="pub rise">
+      <div class="pub__n">Nº 260</div>
+      <div class="pub__t" data-pt="Experiência do usuário, usabilidade e design" data-en="User experience, usability and design">Experiência do usuário, usabilidade e design</div>
+      <div class="pub__d" data-pt="Mai 2018" data-en="May 2018">Mai 2018</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 339</div>
+      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/339-2019-redes-para-containers-en.pdf&quot;>Redes para containers</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/339-2019-redes-para-containers-en.pdf&quot;>Container Networks</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/339-2019-redes-para-containers-en.pdf">Redes para containers</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Jun 2019" data-en="Jun 2019">Jun 2019</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 370</div>
+      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/370-2020-o-que-e-python-en.pdf&quot;>O que é Python e para que serve?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/370-2020-o-que-e-python-en.pdf&quot;>What is Python and what is it used for?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/370-2020-o-que-e-python-en.pdf">O que é Python e para que serve?</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Ago 2020" data-en="Aug 2020">Ago 2020</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 387</div>
+      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/387-2021-cloud-distribuida-en.pdf&quot;>Quais os benefícios da Cloud Distribuída?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/387-2021-cloud-distribuida-en.pdf&quot;>What are the benefits of the Distributed Cloud?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/387-2021-cloud-distribuida-en.pdf">Quais os benefícios da Cloud Distribuída?</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Mai 2021" data-en="May 2021">Mai 2021</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 394</div>
+      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/394-2021-infraestrutura-para-ai-en.pdf&quot;>Infraestrutura para AI: o que preciso entender?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/394-2021-infraestrutura-para-ai-en.pdf&quot;>Infrastructure for AI: what do I need to understand?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/394-2021-infraestrutura-para-ai-en.pdf">Infraestrutura para AI: o que preciso entender?</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Dez 2021" data-en="Dec 2021">Dez 2021</div>
+    </div>
+
+    <p class="note" data-pt="Série mantida pelo Technology Leadership Council Brazil, comunidade técnica ligada à IBM Academy of Technology." data-en="Series published by the Technology Leadership Council Brazil, a technical community affiliated with the IBM Academy of Technology.">Série mantida pelo Technology Leadership Council Brazil, comunidade técnica ligada à IBM Academy of Technology.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>Ricardo Nunes Ferreira · 2026</div>
+    <div><a href="mailto:SEU-EMAIL@EXEMPLO.COM">SEU-EMAIL@EXEMPLO.COM</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ---------- language ---------- */
+  var STRINGS = {
+    pt:{ lang:"pt-BR", title:"Ricardo Nunes Ferreira", desc:"Ricardo Nunes Ferreira — arquitetura e integração de SIEM, 25 anos em infraestrutura de TI." },
+    en:{ lang:"en",    title:"Ricardo Nunes Ferreira", desc:"Ricardo Nunes Ferreira — SIEM architecture and integration, 25 years in IT infrastructure." }
+  };
+  var nodes = document.querySelectorAll('[data-pt]');
+  var buttons = document.querySelectorAll('.lang button');
+  var meta = document.querySelector('meta[name="description"]');
+
+  function setLang(code){
+    nodes.forEach(function(el){
+      var next = el.getAttribute('data-' + code);
+      if(next !== null) el.innerHTML = next;
+    });
+    buttons.forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === code));
+    });
+    document.documentElement.lang = STRINGS[code].lang;
+    document.title = STRINGS[code].title;
+    if(meta) meta.setAttribute('content', STRINGS[code].desc);
+  }
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+  });
+
+  var preferred = (navigator.language || 'pt').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+  setLang(preferred);
+
+  /* ---------- reveal ---------- */
+  var items = document.querySelectorAll('.rise');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var group = e.target.parentNode.querySelectorAll('.rise');
+      var i = Array.prototype.indexOf.call(group, e.target);
+      e.target.style.transitionDelay = Math.min(i,9) * 55 + 'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
