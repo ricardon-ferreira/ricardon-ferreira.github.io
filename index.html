@@ -167,6 +167,32 @@
   .note{margin:1.4rem 0 0;font-size:.92rem;color:var(--muted);max-width:52ch}
 
 
+
+  /* ---------- disclosure ---------- */
+  .disc summary{
+    list-style:none;cursor:pointer;
+    display:flex;align-items:center;gap:.7rem;
+    padding:.9rem 0;
+    font-family:var(--data);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);
+    transition:color .15s ease;
+  }
+  .disc summary::-webkit-details-marker{display:none}
+  .disc summary::before{
+    content:"+";
+    display:flex;align-items:center;justify-content:center;
+    width:1.5rem;height:1.5rem;flex:none;
+    border:1px solid var(--rule);
+    font-size:.95rem;line-height:1;color:var(--ink);
+    transition:background-color .15s ease,border-color .15s ease;
+  }
+  .disc[open] summary::before{content:"–"}
+  .disc summary:hover{color:var(--ink)}
+  .disc summary:hover::before{background:var(--mark);border-color:var(--ink)}
+  .disc[open] summary{color:var(--ink)}
+  .disc__body{padding-bottom:.5rem;animation:unfold .4s ease}
+  @keyframes unfold{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
   /* ---------- certificates ---------- */
   .vend{
     display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
@@ -252,7 +278,7 @@
 <div class="wrap head">
   <p class="eyebrow" data-pt="Entusiasta de tecnologia" data-en="Technology enthusiast">Entusiasta de tecnologia</p>
   <h1>Ricardo Nunes Ferreira</h1>
-  <p class="lede" data-pt="Arquitetura e integração de ferramentas de cibersegurança. Vinte e cinco anos entre infraestrutura, nuvem e operação em escala global." data-en="Cybersecurity tooling architecture and integration. Twenty-five years across infrastructure, cloud and global-scale operations.">Arquitetura e integração de ferramentas de cibersegurança. Vinte e cinco anos entre infraestrutura, nuvem e operação em escala global.</p>
+  <p class="lede" data-pt="Uma pessoa que deseja deixar um mundo melhor para sua família e suas filhas." data-en="Someone who wants to leave a better world for his family and his daughters.">Uma pessoa que deseja deixar um mundo melhor para sua família e suas filhas.</p>
 </div>
 
 <nav class="nav">
@@ -263,9 +289,8 @@
     <a href="#certificacoes" data-pt="Certificações" data-en="Certifications">Certificações</a>
     <a href="#premios" data-pt="Prêmios" data-en="Awards">Prêmios</a>
     <a href="#interesses" data-pt="Interesses" data-en="Interests">Interesses</a>
+    <a href="#artigos" data-pt="Artigos" data-en="Articles">Artigos</a>
     <a href="#ibm">IBM</a>
-    <a href="#kyndryl">Kyndryl</a>
-    <a href="#cummins">Cummins</a>
   </div>
 </nav>
 
@@ -273,11 +298,16 @@
 
   <section class="sec" id="about">
     <div class="sec__head"><span>About</span><span data-pt="Quem sou" data-en="Who I am">Quem sou</span></div>
-    <p class="prose rise" data-pt="São mais de vinte e cinco anos em tecnologia da informação. Comecei escrevendo pequenos programas de controle de estoque e faturamento, passei por suporte, infraestrutura, entrega de serviços e arquitetura, e hoje trabalho com as ferramentas que protegem ambientes de grande porte." data-en="Twenty-five years in information technology. I started out writing small programs for inventory and billing, moved through support, infrastructure, service delivery and architecture, and today I work with the tools that protect large-scale environments.">São mais de vinte e cinco anos em tecnologia da informação. Comecei escrevendo pequenos programas de controle de estoque e faturamento, passei por suporte, infraestrutura, entrega de serviços e arquitetura, e hoje trabalho com as ferramentas que protegem ambientes de grande porte.</p>
-    <p class="prose rise" data-pt="A maior parte desse caminho foi na IBM: vinte anos que começaram no suporte remoto a mainframe e terminaram liderando times de arquitetos em propostas de outsourcing complexas. Depois vieram a Kyndryl e a virada para cibersegurança." data-en="Most of that road was at IBM: twenty years that began with remote mainframe support and ended leading teams of architects on complex outsourcing proposals. Then came Kyndryl and the turn towards cybersecurity.">A maior parte desse caminho foi na IBM: vinte anos que começaram no suporte remoto a mainframe e terminaram liderando times de arquitetos em propostas de outsourcing complexas. Depois vieram a Kyndryl e a virada para cibersegurança.</p>
-    <p class="prose rise" data-pt="O trabalho quase sempre teve o mesmo formato: entender o que o cliente precisa de verdade, traduzir isso em uma solução que caiba no orçamento e no prazo, e conduzir um time técnico até a assinatura. Foram clientes de telecomunicações, manufatura, serviços financeiros, varejo, energia e governo, em nove países." data-en="The work has almost always had the same shape: understand what the client actually needs, turn that into a solution that fits the budget and the timeline, and carry a technical team through to signature. Clients across telecommunications, manufacturing, financial services, retail, energy and government, in nine countries.">O trabalho quase sempre teve o mesmo formato: entender o que o cliente precisa de verdade, traduzir isso em uma solução que caiba no orçamento e no prazo, e conduzir um time técnico até a assinatura. Foram clientes de telecomunicações, manufatura, serviços financeiros, varejo, energia e governo, em nove países.</p>
-    <p class="prose rise" data-pt="Nesse tempo aprendi que a parte difícil raramente é a tecnologia. É alinhar expectativas, explicar decisões técnicas para quem não é técnico e manter um time inteiro remando na mesma direção quando o prazo aperta." data-en="Along the way I learned that the hard part is rarely the technology. It is aligning expectations, explaining technical decisions to non-technical people, and keeping a whole team pulling in the same direction when the deadline tightens.">Nesse tempo aprendi que a parte difícil raramente é a tecnologia. É alinhar expectativas, explicar decisões técnicas para quem não é técnico e manter um time inteiro remando na mesma direção quando o prazo aperta.</p>
-    <p class="prose rise" data-pt="Continuo estudando. Concluí Engenharia Civil em 2023, fora da minha área, e boa parte do meu tempo livre vai para entender plataformas novas — que, em segurança, aparecem todo ano." data-en="I am still studying. I finished a Civil Engineering degree in 2023, outside my field, and a good share of my free time goes into learning new platforms — which, in security, show up every year.">Continuo estudando. Concluí Engenharia Civil em 2023, fora da minha área, e boa parte do meu tempo livre vai para entender plataformas novas — que, em segurança, aparecem todo ano.</p>
+    <details class="disc">
+      <summary data-pt="Ler sobre mim" data-en="Read about me">Ler sobre mim</summary>
+      <div class="disc__body">
+    <p class="prose" data-pt="São mais de vinte e cinco anos em tecnologia da informação. Comecei escrevendo pequenos programas de controle de estoque e faturamento, passei por suporte, infraestrutura, entrega de serviços e arquitetura, e hoje trabalho com as ferramentas que protegem ambientes de grande porte." data-en="Twenty-five years in information technology. I started out writing small programs for inventory and billing, moved through support, infrastructure, service delivery and architecture, and today I work with the tools that protect large-scale environments.">São mais de vinte e cinco anos em tecnologia da informação. Comecei escrevendo pequenos programas de controle de estoque e faturamento, passei por suporte, infraestrutura, entrega de serviços e arquitetura, e hoje trabalho com as ferramentas que protegem ambientes de grande porte.</p>
+    <p class="prose" data-pt="A maior parte desse caminho foi na IBM: vinte anos que começaram no suporte remoto a mainframe e terminaram liderando times de arquitetos em propostas de outsourcing complexas. Depois vieram a Kyndryl e a virada para cibersegurança." data-en="Most of that road was at IBM: twenty years that began with remote mainframe support and ended leading teams of architects on complex outsourcing proposals. Then came Kyndryl and the turn towards cybersecurity.">A maior parte desse caminho foi na IBM: vinte anos que começaram no suporte remoto a mainframe e terminaram liderando times de arquitetos em propostas de outsourcing complexas. Depois vieram a Kyndryl e a virada para cibersegurança.</p>
+    <p class="prose" data-pt="O trabalho quase sempre teve o mesmo formato: entender o que o cliente precisa de verdade, traduzir isso em uma solução que caiba no orçamento e no prazo, e conduzir um time técnico até a assinatura. Foram clientes de telecomunicações, manufatura, serviços financeiros, varejo, energia e governo, em nove países." data-en="The work has almost always had the same shape: understand what the client actually needs, turn that into a solution that fits the budget and the timeline, and carry a technical team through to signature. Clients across telecommunications, manufacturing, financial services, retail, energy and government, in nine countries.">O trabalho quase sempre teve o mesmo formato: entender o que o cliente precisa de verdade, traduzir isso em uma solução que caiba no orçamento e no prazo, e conduzir um time técnico até a assinatura. Foram clientes de telecomunicações, manufatura, serviços financeiros, varejo, energia e governo, em nove países.</p>
+    <p class="prose" data-pt="Nesse tempo aprendi que a parte difícil raramente é a tecnologia. É alinhar expectativas, explicar decisões técnicas para quem não é técnico e manter um time inteiro remando na mesma direção quando o prazo aperta." data-en="Along the way I learned that the hard part is rarely the technology. It is aligning expectations, explaining technical decisions to non-technical people, and keeping a whole team pulling in the same direction when the deadline tightens.">Nesse tempo aprendi que a parte difícil raramente é a tecnologia. É alinhar expectativas, explicar decisões técnicas para quem não é técnico e manter um time inteiro remando na mesma direção quando o prazo aperta.</p>
+    <p class="prose" data-pt="Continuo estudando. Concluí Engenharia Civil em 2023, fora da minha área, e boa parte do meu tempo livre vai para entender plataformas novas — que, em segurança, aparecem todo ano." data-en="I am still studying. I finished a Civil Engineering degree in 2023, outside my field, and a good share of my free time goes into learning new platforms — which, in security, show up every year.">Continuo estudando. Concluí Engenharia Civil em 2023, fora da minha área, e boa parte do meu tempo livre vai para entender plataformas novas — que, em segurança, aparecem todo ano.</p>
+      </div>
+    </details>
   </section>
 
   <section class="sec" id="carreira">
@@ -402,9 +432,42 @@
     <p class="todo rise"><b>PREENCHER</b> — três temas que você acompanha por conta própria, com duas ou três linhas cada. Use a mesma estrutura de três colunas da seção Kyndryl.</p>
   </section>
 
+  <section class="sec" id="artigos">
+    <div class="sec__head"><span data-pt="Artigos" data-en="Articles">Artigos</span><span>TLC-BR Mini Paper Series</span></div>
+    <p class="prose rise" data-pt="Cinco artigos publicados na série Mini Paper do Technology Leadership Council Brazil, comunidade técnica ligada à IBM Academy of Technology." data-en="Five articles published in the Mini Paper series of the Technology Leadership Council Brazil, a technical community affiliated with the IBM Academy of Technology.">Cinco artigos publicados na série Mini Paper do Technology Leadership Council Brazil, comunidade técnica ligada à IBM Academy of Technology.</p>
+
+    <div class="pub rise">
+      <div class="pub__n">Nº 260</div>
+      <div class="pub__t" data-pt="Experiência do usuário, usabilidade e design" data-en="User experience, usability and design">Experiência do usuário, usabilidade e design</div>
+      <div class="pub__d" data-pt="Mai 2018" data-en="May 2018">Mai 2018</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 339</div>
+      <div class="pub__t" data-pt="<a href=&quot;artigos/339-2019-redes-para-containers-en.pdf&quot;>Redes para containers</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;artigos/339-2019-redes-para-containers-en.pdf&quot;>Container Networks</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="artigos/339-2019-redes-para-containers-en.pdf">Redes para containers</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Jun 2019" data-en="Jun 2019">Jun 2019</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 370</div>
+      <div class="pub__t" data-pt="<a href=&quot;artigos/370-2020-o-que-e-python-en.pdf&quot;>O que é Python e para que serve?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;artigos/370-2020-o-que-e-python-en.pdf&quot;>What is Python and what is it used for?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="artigos/370-2020-o-que-e-python-en.pdf">O que é Python e para que serve?</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Ago 2020" data-en="Aug 2020">Ago 2020</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 387</div>
+      <div class="pub__t" data-pt="<a href=&quot;artigos/387-2021-cloud-distribuida-en.pdf&quot;>Quais os benefícios da Cloud Distribuída?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;artigos/387-2021-cloud-distribuida-en.pdf&quot;>What are the benefits of the Distributed Cloud?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="artigos/387-2021-cloud-distribuida-en.pdf">Quais os benefícios da Cloud Distribuída?</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Mai 2021" data-en="May 2021">Mai 2021</div>
+    </div>
+    <div class="pub rise">
+      <div class="pub__n">Nº 394</div>
+      <div class="pub__t" data-pt="<a href=&quot;artigos/394-2021-infraestrutura-para-ai-en.pdf&quot;>Infraestrutura para AI: o que preciso entender?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;artigos/394-2021-infraestrutura-para-ai-en.pdf&quot;>Infrastructure for AI: what do I need to understand?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="artigos/394-2021-infraestrutura-para-ai-en.pdf">Infraestrutura para AI: o que preciso entender?</a><span class="pub__f">EN · PDF</span></div>
+      <div class="pub__d" data-pt="Dez 2021" data-en="Dec 2021">Dez 2021</div>
+    </div>
+
+    <p class="note" data-pt="Os PDFs são as versões em inglês, com certificado de tradução. O Nº 260 ainda não está disponível para download." data-en="The PDFs are the certified English versions. No. 260 is not yet available for download.">Os PDFs são as versões em inglês, com certificado de tradução. O Nº 260 ainda não está disponível para download.</p>
+  </section>
+
   <section class="sec" id="ibm">
-    <div class="sec__head"><span>IBM</span><span>2001 — 2021</span></div>
-    <p class="prose rise" data-pt="Vinte anos na IBM Brasil, atuando como arquiteto de TI e liderando soluções complexas de outsourcing. Nesse período publiquei cinco artigos na série Mini Paper do Technology Leadership Council Brazil, comunidade técnica ligada à IBM Academy of Technology." data-en="Twenty years at IBM Brazil as an IT architect, leading complex outsourcing solutions. Over that period I published five articles in the Mini Paper series of the Technology Leadership Council Brazil, a technical community affiliated with the IBM Academy of Technology.">Vinte anos na IBM Brasil, atuando como arquiteto de TI e liderando soluções complexas de outsourcing. Nesse período publiquei cinco artigos na série Mini Paper do Technology Leadership Council Brazil, comunidade técnica ligada à IBM Academy of Technology.</p>
+    <div class="sec__head"><span>IBM</span><span data-pt="2001 — hoje" data-en="2001 — today">2001 — hoje</span></div>
+    <p class="prose rise" data-pt="Vinte anos na IBM Brasil, do suporte remoto a mainframe até a arquitetura certificada e a liderança de times de arquitetos em propostas de outsourcing complexas. Em 2021 a divisão de serviços de infraestrutura virou uma empresa independente, a Kyndryl, e eu segui com ela." data-en="Twenty years at IBM Brazil, from remote mainframe support to certified architecture and leading teams of architects on complex outsourcing proposals. In 2021 the infrastructure services division became an independent company, Kyndryl, and I went with it.">Vinte anos na IBM Brasil, do suporte remoto a mainframe até a arquitetura certificada e a liderança de times de arquitetos em propostas de outsourcing complexas. Em 2021 a divisão de serviços de infraestrutura virou uma empresa independente, a Kyndryl, e eu segui com ela.</p>
 
     <div class="vend rise" data-pt="Cargos" data-en="Roles"><span></span></div>
     <div class="cert rise"><div class="cert__d">2001—2002</div><div class="cert__t" data-pt="Remote Technical Support — mainframe, EDI, ambiente de usuário final" data-en="Remote Technical Support — mainframe, EDI, end-user environment">Remote Technical Support — mainframe, EDI, ambiente de usuário final</div><div class="cert__f"></div></div>
@@ -415,38 +478,7 @@
     <div class="cert rise"><div class="cert__d">2016—2018</div><div class="cert__t" data-pt="Solutions Manager — liderança de arquitetos em oportunidades até US$ 10M" data-en="Solutions Manager — leading architects on opportunities up to US$10M">Solutions Manager — liderança de arquitetos em oportunidades até US$ 10M</div><div class="cert__f"></div></div>
     <div class="cert rise"><div class="cert__d">2018—2021</div><div class="cert__t" data-pt="Technical Solutions Manager — outsourcing estratégico complexo" data-en="Technical Solutions Manager — complex strategic outsourcing">Technical Solutions Manager — outsourcing estratégico complexo</div><div class="cert__f"></div></div>
 
-    <div class="vend rise" data-pt="Publicações" data-en="Publications"><span>TLC-BR Mini Paper Series</span></div>
-    <div class="pub rise">
-      <div class="pub__n">Nº 260</div>
-      <div class="pub__t" data-pt="Experiência do usuário, usabilidade e design" data-en="User experience, usability and design">Experiência do usuário, usabilidade e design</div>
-      <div class="pub__d" data-pt="Mai 2018" data-en="May 2018">Mai 2018</div>
-    </div>
-    <div class="pub rise">
-      <div class="pub__n">Nº 339</div>
-      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/339-2019-redes-para-containers-en.pdf&quot;>Redes para containers</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/339-2019-redes-para-containers-en.pdf&quot;>Container Networks</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/339-2019-redes-para-containers-en.pdf">Redes para containers</a><span class="pub__f">EN · PDF</span></div>
-      <div class="pub__d" data-pt="Jun 2019" data-en="Jun 2019">Jun 2019</div>
-    </div>
-    <div class="pub rise">
-      <div class="pub__n">Nº 370</div>
-      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/370-2020-o-que-e-python-en.pdf&quot;>O que é Python e para que serve?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/370-2020-o-que-e-python-en.pdf&quot;>What is Python and what is it used for?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/370-2020-o-que-e-python-en.pdf">O que é Python e para que serve?</a><span class="pub__f">EN · PDF</span></div>
-      <div class="pub__d" data-pt="Ago 2020" data-en="Aug 2020">Ago 2020</div>
-    </div>
-    <div class="pub rise">
-      <div class="pub__n">Nº 387</div>
-      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/387-2021-cloud-distribuida-en.pdf&quot;>Quais os benefícios da Cloud Distribuída?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/387-2021-cloud-distribuida-en.pdf&quot;>What are the benefits of the Distributed Cloud?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/387-2021-cloud-distribuida-en.pdf">Quais os benefícios da Cloud Distribuída?</a><span class="pub__f">EN · PDF</span></div>
-      <div class="pub__d" data-pt="Mai 2021" data-en="May 2021">Mai 2021</div>
-    </div>
-    <div class="pub rise">
-      <div class="pub__n">Nº 394</div>
-      <div class="pub__t" data-pt="<a href=&quot;IBM/publicacoes/394-2021-infraestrutura-para-ai-en.pdf&quot;>Infraestrutura para AI: o que preciso entender?</a><span class=&quot;pub__f&quot;>EN · PDF</span>" data-en="<a href=&quot;IBM/publicacoes/394-2021-infraestrutura-para-ai-en.pdf&quot;>Infrastructure for AI: what do I need to understand?</a><span class=&quot;pub__f&quot;>EN · PDF</span>"><a href="IBM/publicacoes/394-2021-infraestrutura-para-ai-en.pdf">Infraestrutura para AI: o que preciso entender?</a><span class="pub__f">EN · PDF</span></div>
-      <div class="pub__d" data-pt="Dez 2021" data-en="Dec 2021">Dez 2021</div>
-    </div>
-
-    <p class="note" data-pt="Os PDFs são as versões em inglês, com certificado de tradução. O Nº 260 ainda não está disponível para download." data-en="The PDFs are the certified English versions. No. 260 is not yet available for download.">Os PDFs são as versões em inglês, com certificado de tradução. O Nº 260 ainda não está disponível para download.</p>
-  </section>
-
-  <section class="sec" id="kyndryl">
-    <div class="sec__head"><span>Kyndryl</span><span data-pt="2021 — hoje" data-en="2021 — today">2021 — hoje</span></div>
+    <div class="vend rise">Kyndryl<span data-pt="2021 — hoje" data-en="2021 — today">2021 — hoje</span></div>
     <p class="prose rise" data-pt="Como Global Cybersecurity Tools Leader, respondo pela arquitetura e pela integração das ferramentas de segurança usadas nas contas globais." data-en="As Global Cybersecurity Tools Leader, I am responsible for the architecture and integration of the security tooling used across global accounts.">Como Global Cybersecurity Tools Leader, respondo pela arquitetura e pela integração das ferramentas de segurança usadas nas contas globais.</p>
     <div class="grid3" style="margin-top:2rem">
       <div class="blk rise">
@@ -462,26 +494,6 @@
         <p data-pt="Tradução de requisito de cliente em solução dimensionada, com escopo, esforço e riscos declarados antes da assinatura." data-en="Turning client requirements into a sized solution, with scope, effort and risks stated before anyone signs.">Tradução de requisito de cliente em solução dimensionada, com escopo, esforço e riscos declarados antes da assinatura.</p>
       </div>
     </div>
-  </section>
-
-  <section class="sec" id="cummins">
-    <div class="sec__head"><span>Cummins</span><span>1998 — 2001</span></div>
-    <p class="prose rise" data-pt="Cummins Brasil, em Guarulhos, foi meu primeiro contato com um ambiente corporativo de TI de verdade. Entrei como estagiário de análise de sistemas e saí três anos depois com uma noção prática de infraestrutura, banco de dados e desenvolvimento que sustentou todo o resto da carreira." data-en="Cummins Brazil, in Guarulhos, was my first contact with a real corporate IT environment. I joined as a systems analyst intern and left three years later with a practical grounding in infrastructure, databases and development that has supported everything since.">Cummins Brasil, em Guarulhos, foi meu primeiro contato com um ambiente corporativo de TI de verdade. Entrei como estagiário de análise de sistemas e saí três anos depois com uma noção prática de infraestrutura, banco de dados e desenvolvimento que sustentou todo o resto da carreira.</p>
-    <div class="grid3" style="margin-top:2rem">
-      <div class="blk rise">
-        <h3 data-pt="Infraestrutura" data-en="Infrastructure">Infraestrutura</h3>
-        <p data-pt="Administração de servidores IBM Netfinity, ambiente Oracle, Lotus Notes e a impressão de cerca de cinco mil holerites mensais gerados no mainframe 3270." data-en="IBM Netfinity server administration, Oracle environment, Lotus Notes, and the printing of roughly five thousand monthly payslips generated on the 3270 mainframe.">Administração de servidores IBM Netfinity, ambiente Oracle, Lotus Notes e a impressão de cerca de cinco mil holerites mensais gerados no mainframe 3270.</p>
-      </div>
-      <div class="blk rise">
-        <h3 data-pt="Engenharia" data-en="Engineering">Engenharia</h3>
-        <p data-pt="Suporte ao ambiente Pro-Engineer e CAD e ao Engine Track, sistema em Visual Basic que controlava as etapas de montagem dos motores, além das tabelas SQL por trás dele." data-en="Support for the Pro-Engineer and CAD environments and for Engine Track, a Visual Basic system controlling engine assembly steps, along with the SQL tables behind it.">Suporte ao ambiente Pro-Engineer e CAD e ao Engine Track, sistema em Visual Basic que controlava as etapas de montagem dos motores, além das tabelas SQL por trás dele.</p>
-      </div>
-      <div class="blk rise">
-        <h3 data-pt="Intranet" data-en="Intranet">Intranet</h3>
-        <p data-pt="Desenvolvi a intranet da Cummins Brasil alinhada à matriz americana, com loja interna para funcionários e um acompanhamento de prototipagem que substituiu a troca de e-mails entre os departamentos de engenharia." data-en="I built the Cummins Brazil intranet aligned with the US headquarters, including an internal store for employees and a prototyping tracker that replaced email threads between engineering departments.">Desenvolvi a intranet da Cummins Brasil alinhada à matriz americana, com loja interna para funcionários e um acompanhamento de prototipagem que substituiu a troca de e-mails entre os departamentos de engenharia.</p>
-      </div>
-    </div>
-    <p class="note rise" data-pt="Também integrei o comitê que avaliou a escolha do novo ERP da Cummins Brasil, entre SAP e Oracle." data-en="I was also part of the committee that evaluated the choice of Cummins Brazil's new ERP, between SAP and Oracle.">Também integrei o comitê que avaliou a escolha do novo ERP da Cummins Brasil, entre SAP e Oracle.</p>
   </section>
 
 </main>
@@ -547,6 +559,15 @@
   } else {
     items.forEach(function(el){ el.classList.add('in'); });
   }
+
+  /* ---------- abre o About ao chegar pelo menu ---------- */
+  var about = document.querySelector('#about .disc');
+  function openAbout(){ if(about && location.hash === '#about') about.open = true; }
+  document.querySelectorAll('.nav a[href="#about"]').forEach(function(a){
+    a.addEventListener('click', function(){ if(about) about.open = true; });
+  });
+  window.addEventListener('hashchange', openAbout);
+  openAbout();
 
   /* ---------- active section in nav ---------- */
   var links = {};
