@@ -1,36 +1,11 @@
-# ricardonunesferreira.github.io
+# Prêmios
 
-Site pessoal — página única, sem dependências, sem build. É só HTML e CSS em `index.html`.
+Pasta para os arquivos dos reconhecimentos: PDFs de certificados, fotos de troféus,
+capturas de tela dos eCards e prints das premiações internas.
 
-## Antes de publicar, edite
+Padrão de nome, igual ao das certificações:
+`AAAA-MM-DD-nome-do-premio.pdf` — por exemplo, `2019-07-10-drive-differentiated-solutions.pdf`.
 
-- `SEU-EMAIL@EXEMPLO.COM` — aparece em dois lugares (links do topo e rodapé)
-- `https://www.linkedin.com/in/SEU-USUARIO`
-- `https://github.com/SEU-USUARIO` — ou remova o link, se preferir
-- `Winter Garden · Flórida` na barra superior, caso não queira expor a cidade
-
-## Como alterar o conteúdo
-
-- **Linha do tempo:** cada bloco `<div class="ev">` é um evento. Copie um bloco existente para adicionar outro. A classe `ev--live` marca o evento atual em amarelo — deve existir em um bloco só.
-- **Publicações:** cada `<div class="pub">` é um artigo.
-- **Cores:** todas as cores estão nas variáveis `:root` no topo do `<style>`.
-
-## Estrutura
-
-```
-index.html
-IBM/
-  publicacoes/
-    339-2019-redes-para-containers-en.pdf
-    370-2020-o-que-e-python-en.pdf
-    387-2021-cloud-distribuida-en.pdf
-    394-2021-infraestrutura-para-ai-en.pdf
-```
-
-Os PDFs são as versões em inglês, com certificado de tradução na primeira página.
-Falta o Nº 260 (2018), que continua sem link na página.
-
-## Domínio próprio (opcional)
-
-Crie um arquivo `CNAME` na raiz com o domínio dentro (ex.: `ricardoferreira.com.br`),
-aponte um `CNAME` no DNS para `SEU-USUARIO.github.io` e ative HTTPS nas configurações do Pages.
+Enquanto não houver arquivo, a seção #premios do site lista os reconhecimentos apenas
+como texto, sem link. Para transformar um item em link, envolva o título em
+`<a href="premios/arquivo.pdf">…</a>`, como já é feito na seção de certificações.
